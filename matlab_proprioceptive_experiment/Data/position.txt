@@ -1,0 +1,2 @@
+Experience 2 passage 1 29/10 12:15 Sujet : Flavien Lebrun
+PosxReelHand;PosyReelHand;PosyReelHand;time;PosxVirtualHand;PosyVirtualHand;PoszVirtualHand;PosxTargetReel;PosyTargetReel;PoszTargetReel;PosxTargetVirtuel;PosyTargetVirtuel;PoszTargetVirtuel;first_experiment;second_experiment

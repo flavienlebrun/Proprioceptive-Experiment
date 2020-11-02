@@ -1,0 +1,26 @@
+function[coeffsNeutralBg, curveNeutralBg, thresholdNeutralBg, choiceOrganise,stat,TargetNumber,choice,angleOffset] =processExpe2(filename,secondPassage)
+[C_header,Data] = lireDataExpe2(filename);
+choice = Data(:,4);
+angleOffset = Data(:,5);
+TargetNumber = Data(:,6);
+[length,l] = size(choice);  
+nbrTarget = 15;
+%% Angle applied&   
+AngleOrdonne = [-0.174532900000000,-0.139626300000000,-0.104719800000000,-0.069813170000000,-0.034906580000000,0,0.034906580000000,0.069813170000000,0.104719800000000,0.139626300000000,0.174532900000000];
+AngleOrdonne2 = [-0.139626300000000,-0.104719800000000,-0.069813170000000,-0.052359880000000,-0.017453290000000,0,0.017453290000000,0.052359880000000,0.069813170000000, 0.104719800000000,0.139626300000000];
+AngleOrdonne3 = [-0.226892800000000,-0.174532900000000,-0.139626300000000,-0.104719800000000,-0.0872664700000000,-0.0698131700000000,-0.0349065800000000,0,0.0349065800000000,0.0698131700000000,0.0872664700000000,0.104719800000000,0.139626300000000,0.174532900000000,0.226892800000000];
+AngleOrdonne4 = [-0.226892800000000,-0.1570796,-0.104719800000000,-0.0872664700000000,-0.0698131700000000,-0.05235988,-0.0349065800000000,0,0.0349065800000000,-0.05235988,0.0698131700000000,0.0872664700000000,0.104719800000000,0.1570796,0.226892800000000];
+
+%% classification of data
+if secondPassage == 1 
+    [choiceOrganise,stat] = organise2(choice,angleOffset,15,AngleOrdonne4);
+else
+    [choiceOrganise,stat] = organise2(choice,angleOffset,15,AngleOrdonne3);
+end
+%% psychofit
+targets = [0.25, 0.5, 0.75]; % 25%, 50% and 75% performance
+weights = ones(nbrTarget,1);
+
+
+[coeffsNeutralBg, ~, curveNeutralBg, thresholdNeutralBg] = ...
+FitPsycheCurveLogit(AngleOrdonne3, stat, weights, targets);

@@ -7,6 +7,7 @@ varVy = 0;
 varPx = 0;
 varPy = 0;
 
+testCommit = 0;
 
 thetaVisu = thetaRad+alpha;
 for r=0:0.1:1
